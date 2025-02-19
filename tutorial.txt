@@ -1,0 +1,12 @@
+https://www.neoguias.com/tutorial-vue/
+https://www.neoguias.com/tutorialrest-vue/
+
+cd tutorial-vue
+npm install
+npm run dev
+
+instalar bootsrap desde node
+# If you are not in the project directory
+# cd to it before executing these commands
+npm install bootstrap@5.3.3
+npm install @popperjs/core@2.11.8
