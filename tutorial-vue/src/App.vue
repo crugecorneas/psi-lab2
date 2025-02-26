@@ -10,7 +10,7 @@
       <div class="col-md-12">
         <!-- Inclusion del componente "TablaPersonas" -->
         <formulario-persona @add-persona="agregarPersona" />
-        <tabla-personas :personas="personas" />
+        <tabla-personas :personas="personas" @delete-persona="eliminarPersona" @actualizar-persona="actualizarPersona" />
       </div>
     </div>
   </div>
@@ -37,6 +37,28 @@ const agregarPersona = (persona) => {
   }
   personas.value = [...personas.value, { ...persona, id }];
 };
+
+const eliminarPersona = (id) => {
+  try {
+    personas.value = personas.value.filter(
+      u => u.id !== id
+    );
+  }
+  catch (error) {
+    console.error(error);
+  }
+};
+
+
+const actualizarPersona = (id, personaActualizada) => {
+  try {
+    personas.value = personas.value.map(persona =>
+      persona.id === id ? personaActualizada : persona);
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
 </script>
 
 <style>
