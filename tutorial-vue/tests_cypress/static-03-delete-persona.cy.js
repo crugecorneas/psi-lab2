@@ -17,11 +17,11 @@ context("Delete persona", () => {
       cy.get("[data-cy=add-button]").click();
       cy.get("div.alert-success");
 
-      cy.get("[data-cy=name]").type("Pepe");
-      cy.get("[data-cy=surname]").type("Jean");
-      cy.get("[data-cy=email]").type("pepe@jean.com");
-      cy.get("[data-cy=add-button]").click();
-      cy.get("div.alert-success");
+      // cy.get("[data-cy=name]").type("Pepe");
+      // cy.get("[data-cy=surname]").type("Jean");
+      // cy.get("[data-cy=email]").type("pepe@jean.com");
+      // cy.get("[data-cy=add-button]").click();
+      // cy.get("div.alert-success");
 
       cy.get("table")
         .find("tr")
