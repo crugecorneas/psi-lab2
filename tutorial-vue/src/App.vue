@@ -15,7 +15,7 @@
       </div>
     </div>
     <div>
-      <p>Count is {{ store.count }}</p>
+      <p>Count is: {{ store.count }}</p>
     </div>
   </div>
 
