@@ -77,7 +77,7 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 #Acceso pçublico desactivar
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS', 'localhost')]
 #REST_FRAMEWORK = {
 #'DEFAULT_PERMISSION_CLASSES': [
 #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
