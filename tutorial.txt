@@ -16,5 +16,5 @@ npm install bootstrap@5.3.3
 npm install @popperjs/core@2.11.8
 
 
-link página vue: https://psi-lab2-xb4i.onrender.com
-link página django: 
+link página vue: https://vue-q5bo.onrender.com
+link página django: https://psi-lab2-plt4.onrender.com
