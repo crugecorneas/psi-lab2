@@ -4,6 +4,10 @@ https://www.neoguias.com/tutorialrest-vue/
 cd tutorial-vue
 npm install
 npm run dev
+python -m venv venv
+npx cypress run
+npx cypress open
+
 
 instalar bootsrap desde node
 # If you are not in the project directory

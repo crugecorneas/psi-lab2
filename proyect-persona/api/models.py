@@ -7,7 +7,7 @@ class Persona(models.Model):
     id = models.AutoField(primary_key=True)  # id como AutoField para generar un valor entero único automáticamente
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
-    email = models.EmailField(unique=True, max_length=100)
+    email = models.EmailField(max_length=100)
     
     class Meta:
         ordering = ['id']

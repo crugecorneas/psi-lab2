@@ -11,6 +11,25 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+from urllib.parse import urlparse
+
+load_dotenv()
+
+# Replace the DATABASES section of your settings.py with this
+tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': tmpPostgres.path.replace('/', ''),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
+        'PORT': 5432,
+    }
+}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,22 +103,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'persona.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Motor de PostgreSQL
-        'NAME': 'fu1234',  # Nombre de la base de datos
-        'USER': 'alumnodb',  # Usuario de la base de datos
-        'PASSWORD': 'alumnodb',  # Contraseña del usuario
-        'HOST': 'localhost',  # Servidor de la base de datos
-        'PORT': '5432',  # Puerto de PostgreSQL
-    }
-}
-
 
 
 # Password validation

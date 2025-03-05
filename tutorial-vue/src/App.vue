@@ -35,12 +35,13 @@ defineOptions({
 // Declaracion de una variable reactiva "personas" usando "ref"
 const personas = ref([]);
 const store = useCounterStore();
+const url = import.meta.env.VITE_DJANGOURL;
 
 
 const listadoPersonas = async () => {
   // Metodo para obtener un listado de personas
   try {
-    const response = await fetch('http://localhost:8001/api/v1/personas/');
+    const response = await fetch(`${url}/api/v1/personas/`);
     personas.value = await response.json();
   } catch (error) {
     console.error(error);
@@ -48,7 +49,7 @@ const listadoPersonas = async () => {
 };
 const agregarPersona = async (persona) => {
   try {
-    const response = await fetch('http://localhost:8001/api/v1/personas/', {
+    const response = await fetch(`${url}/api/v1/personas/`, {
       method: 'POST',
       body: JSON.stringify(persona),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -63,7 +64,7 @@ const agregarPersona = async (persona) => {
 const eliminarPersona = async (persona_id) => {
   // Metodo para eliminar una persona
   try {
-    await fetch('http://localhost:8001/api/v1/personas/' + persona_id + '/', {
+    await fetch(`${url}/api/v1/personas/${persona_id}/`, {
       method: "DELETE"
     });
     personas.value = personas.value.filter(u => u.id !== persona_id);
@@ -74,7 +75,7 @@ const eliminarPersona = async (persona_id) => {
 const actualizarPersona = async (personaActualizada) => {
   // Metodo para actualizar una persona
   try {
-    const response = await fetch('http://localhost:8001/api/v1/personas/' + personaActualizada.id + '/', {
+    const response = await fetch(`${url}/api/v1/personas/${personaActualizada.id}/`, {
       method: 'PUT',
       body: JSON.stringify(personaActualizada),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
