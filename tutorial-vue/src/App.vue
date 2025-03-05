@@ -14,7 +14,11 @@
           @actualizar-persona="actualizarPersona" />
       </div>
     </div>
+    <div>
+      <p>Count is {{ store.count }}</p>
+    </div>
   </div>
+
 </template>
 
 <script setup>
@@ -22,6 +26,7 @@
 import TablaPersonas from "@/components/TablaPersonas.vue";
 import FormularioPersona from "@/components/FormularioPersona.vue";
 import { ref, onMounted } from "vue";
+import { useCounterStore } from '@/stores/counter';
 // Definicion del componente Vue
 defineOptions({
   // Nombre del componente
@@ -29,12 +34,13 @@ defineOptions({
 });
 // Declaracion de una variable reactiva "personas" usando "ref"
 const personas = ref([]);
+const store = useCounterStore();
 
 
 const listadoPersonas = async () => {
   // Metodo para obtener un listado de personas
   try {
-    const response = await fetch('https://my-json-server.typicode.com/rmarabini/people/personas/');
+    const response = await fetch('http://localhost:8001/api/v1/personas/');
     personas.value = await response.json();
   } catch (error) {
     console.error(error);
@@ -42,13 +48,14 @@ const listadoPersonas = async () => {
 };
 const agregarPersona = async (persona) => {
   try {
-    const response = await fetch('https://my-json-server.typicode.com/rmarabini/people/personas/', {
+    const response = await fetch('http://localhost:8001/api/v1/personas/', {
       method: 'POST',
       body: JSON.stringify(persona),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     });
     const personaCreada = await response.json();
     personas.value = [...personas.value, personaCreada];
+    store.increment();
   } catch (error) {
     console.error(error);
   }
@@ -56,7 +63,7 @@ const agregarPersona = async (persona) => {
 const eliminarPersona = async (persona_id) => {
   // Metodo para eliminar una persona
   try {
-    await fetch('https://my-json-server.typicode.com/rmarabini/people/personas/' + persona_id + '/', {
+    await fetch('http://localhost:8001/api/v1/personas/' + persona_id + '/', {
       method: "DELETE"
     });
     personas.value = personas.value.filter(u => u.id !== persona_id);
@@ -64,10 +71,10 @@ const eliminarPersona = async (persona_id) => {
     console.error(error);
   }
 };
-const actualizarPersona = async (id, personaActualizada) => {
+const actualizarPersona = async (personaActualizada) => {
   // Metodo para actualizar una persona
   try {
-    const response = await fetch('https://my-json-server.typicode.com/rmarabini/people/personas/' + personaActualizada.id + '/', {
+    const response = await fetch('http://localhost:8001/api/v1/personas/' + personaActualizada.id + '/', {
       method: 'PUT',
       body: JSON.stringify(personaActualizada),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },

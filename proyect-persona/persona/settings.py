@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@l9i9op6ue!&+wz3*+^(k^72t)zknyrsia*1a31^$v&6k48=j1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "api.apps.AppConfig",
+    'api',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = [
+'http://localhost:5173',
+]
+
+#Acceso pçublico desactivar
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+#REST_FRAMEWORK = {
+#'DEFAULT_PERMISSION_CLASSES': [
+#'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+#],
+#}
 
 ROOT_URLCONF = 'persona.urls'
 
@@ -77,10 +91,15 @@ WSGI_APPLICATION = 'persona.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  # Motor de PostgreSQL
+        'NAME': 'fu1234',  # Nombre de la base de datos
+        'USER': 'alumnodb',  # Usuario de la base de datos
+        'PASSWORD': 'alumnodb',  # Contraseña del usuario
+        'HOST': 'localhost',  # Servidor de la base de datos
+        'PORT': '5432',  # Puerto de PostgreSQL
     }
 }
+
 
 
 # Password validation
