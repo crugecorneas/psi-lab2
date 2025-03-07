@@ -35,8 +35,7 @@ DATABASES = {
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_URL = '/staticfiles/'
-STATICFILES_DIRS = [BASE_DIR / "staticfiles"]
+STATIC_URL = '/static/'
 
 
 
