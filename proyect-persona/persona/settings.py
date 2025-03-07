@@ -80,6 +80,7 @@ CORS_ORIGIN_WHITELIST = [
 'http://localhost:5173',
 'https://vue-q5bo.onrender.com',
 ]
+ALLOWED_HOSTS=['localhost','127.0.0.1','vue-q5bo.onrender.com','psi-lab2-plt4.onrender.com']
 
 #Acceso pçublico desactivar
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
